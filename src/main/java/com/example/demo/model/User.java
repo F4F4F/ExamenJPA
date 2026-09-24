@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-
+    @Id
     @GeneratedValue()
     private Long id;
 
@@ -24,23 +24,22 @@ public class User {
     private String email;
 
     @Column(name = "full_name", nullable = false)
+    private String fullName;
+    @Column(nullable = false)
     private String role;
 
-    @Column(nullable = false)
-    private String fullName;
+    @OneToMany(mappedBy = "teacher")
+    private List<Classroom> classrooms;
 
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
-    private List<Classroom> ownedRepositories;
+    @OneToMany(mappedBy = "reviewer")
+    private List<PullRequest>  reviewerpullRequests;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private List<PullRequest> taughtRepositories;
+    @OneToMany(mappedBy = "author")
+    private List<PullRequest>  authorpullRequests;
 
-    @ManyToOne(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<PullRequest> authoredPullRequests;
+   @OneToMany(mappedBy = "owner")
+    private List<Repository> repositories;
 
-    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
-    private List<PullRequest> reviewedPullRequests;
-
-    @ManyToOne(mappedBy = "commits", cascade = CascadeType.ALL)
+   @OneToMany(mappedBy = "authorcommit")
     private List<Commit> commits;
 }

@@ -16,8 +16,8 @@ public class PullRequestController {
 
     private final IPullRequestRepository pullRequestRepository;
 
-    @GetMapping
-    public List<PullRequest> findAllPullRequests() {
-        return pullRequestRepository.findAll();
+    @GetMapping(name = "/consulta1")
+    public List<PullRequest> consulta1() {
+        return pullRequestRepository.findDistinctByauthor_classrooms_NameAndStatusEqualsOrderByCreatedAtDesc("Computacion en Internet II - Grupo 1","OPEN");
     }
 }

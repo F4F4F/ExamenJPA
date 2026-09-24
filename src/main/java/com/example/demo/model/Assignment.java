@@ -14,29 +14,26 @@ import java.util.List;
 @Entity
 @Table(name = "assignments")
 public class Assignment {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long deadline;
+    private Integer id;
 
-    @Column(nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT")
-    private String id2;
+    private String description;
 
-    @Column(nullable = false, unique = true)
-    private Timestamp id;
+    private Timestamp deadline;
 
-    @Column(name = "max_score", nullable = false)
+    @Column(name = "max_score")
     private Integer maxScore;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private Classroom classroom;
+    @ManyToOne
+    @JoinColumn(name = "classroom_id")
+    private Classroom clasroom;
 
-    @JsonIgnore
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @ManyToMany(mappedBy = "assignment", cascade = CascadeType.ALL)
-    private Repository repositories;
+
+    @OneToMany(mappedBy = "assignment")
+    private List<Repository> repositories;
+
+
+
 }

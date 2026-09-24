@@ -1,11 +1,13 @@
 package com.example.demo.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +16,7 @@ import lombok.*;
 public class Commit {
 
     @Id
-    private Long id;
+    private Integer id;
 
     @Column(name = "commit_hash", nullable = false, unique = true)
     private String commitHash;
@@ -22,13 +24,21 @@ public class Commit {
     @Column(nullable = false)
     private String message;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "repository_id", nullable = false)
+    @Column(name = "lines_added")
+    private Integer linesAdded;
+
+    @Column(name = "lines_deleted")
+    private Integer linesDeleted;
+
+    @Column(name = "commit_date")
+    private Timestamp commitDate;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User authorcommit;
+
+    @ManyToOne
+    @JoinColumn(name = "repository_id")
     private Repository repository;
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id", nullable = false)
-    private List<User> collaborators;
 }
