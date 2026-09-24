@@ -16,8 +16,8 @@ public class CommitController {
 
     private final ICommitRepository commitRepository;
 
-    @GetMapping
-    public List<Commit> findAllCommits() {
-        return commitRepository.findAll();
+    @GetMapping("/consulta4")
+    public List<Commit> consulta4() {
+        return commitRepository.findDistinctByrepository_nameAndAuthorcommitEqualsIgnoreCaseAndLinesAddedGreaterThan("template-jpa-exam","fix",50);
     }
 }

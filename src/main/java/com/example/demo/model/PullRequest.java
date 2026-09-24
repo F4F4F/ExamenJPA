@@ -7,11 +7,12 @@ import lombok.*;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Getter
-@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "pull_requests")
 public class PullRequest {
 

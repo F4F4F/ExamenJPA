@@ -8,10 +8,11 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "assignments")
 public class Assignment {
     @Id
@@ -32,6 +33,7 @@ public class Assignment {
 
 
     @OneToMany(mappedBy = "assignment")
+    @JsonIgnore
     private List<Repository> repositories;
 
 

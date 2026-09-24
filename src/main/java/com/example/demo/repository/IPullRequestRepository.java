@@ -10,6 +10,9 @@ public interface IPullRequestRepository extends JpaRepository<PullRequest, Integ
     List<PullRequest>
     findDistinctByauthor_classrooms_NameAndStatusEqualsOrderByCreatedAtDesc(String nombrecurso, String estado);
 
+
+
+
     /*
 
 Si su entrada es "Computacion en Internet II - Grupo 1" y "OPEN", su salida será:

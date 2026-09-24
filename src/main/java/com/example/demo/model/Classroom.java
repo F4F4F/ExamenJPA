@@ -6,11 +6,12 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-@Getter
-@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "classrooms")
 public class Classroom {
     @Id
@@ -25,6 +26,7 @@ public class Classroom {
 
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "teacher_id")
     private User teacher;
 

@@ -7,11 +7,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "commits")
 public class Commit {
 
@@ -34,6 +35,7 @@ public class Commit {
     private Timestamp commitDate;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "author_id")
     private User authorcommit;
 

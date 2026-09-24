@@ -16,8 +16,8 @@ public class AssignmentController {
 
     private final IAssignmentRepository assignmentRepository;
 
-    @GetMapping
-    public List<Assignment> findAllAssignments() {
-        return assignmentRepository.findAll();
+    @GetMapping("/consulta5")
+    public List<Assignment> consulta5() {
+        return assignmentRepository.findDistinctByclasroom_Teacher_FullNameAndRepositories_pullRequests_reviewerId_FullNameAndRepositories_pullRequests_StatusEquals("krodriguez","jvalencia","MERGED");
     }
 }

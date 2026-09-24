@@ -1,16 +1,18 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.List;
 
-@Getter
-@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "repositories")
 public class Repository {
     @Id
@@ -28,10 +30,12 @@ public class Repository {
     private Timestamp createdAt;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "owner_id")
     private User owner;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "assignment_id")
     private Assignment assignment;
 
@@ -42,6 +46,7 @@ public class Repository {
     private List<Commit> commits;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "parent_repo_id")
     private Repository parentrepo;
 
